@@ -7,22 +7,12 @@
   </scm>
 
   <groupId>org.example</groupId>
-  <artifactId>SonarubeProject</artifactId>
+  <artifactId>SonarcubeProject</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>SonarubeProject</name>
+  <name>SonarcubeProject</name>
   <url>http://maven.apache.org</url>
-
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.release>17</maven.compiler.release>
-    <sonar.host.url>http://localhost:9000</sonar.host.url>
-    <sonar.projectKey>tp2sonar</sonar.projectKey>
-    <sonar.projectName>TP2 Sonar</sonar.projectName>
-    <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
-    <sonar.coverage.jacoco.xmlReportPaths>${project.build.directory}/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
-  </properties>
 
   <dependencyManagement>
     <dependencies>
@@ -52,6 +42,7 @@
       <artifactId>junit-jupiter</artifactId>
       <scope>test</scope>
     </dependency>
+
   </dependencies>
 
   <build>
@@ -104,15 +95,23 @@
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-checkstyle-plugin</artifactId>
-        <version>3.3.1</version>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-changelog-plugin</artifactId>
         <version>2.2</version>
       </plugin>
 
     </plugins>
   </build>
+
+  <profiles>
+    <profile>
+      <id>sonar</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <sonar.host.url>http://localhost:9000</sonar.host.url>
+        <sonar.token>squ_aafefc1184681b253e6bb0816dcf58524af118e6</sonar.token>
+      </properties>
+    </profile>
+  </profiles>
 </project>
